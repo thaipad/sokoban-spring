@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="controller" class="pro.thaipad.sokoban_spring.controller.Controller" init-method="restart">
+        <property name="model" ref="modelImpl"/>
+        <property name="view" ref="viewImpl" />
+    </bean>
+
+    <bean id="viewImpl" class="pro.thaipad.sokoban_spring.view.ViewImpl"
+          init-method="init">
+        <property name="eventListener" ref="controller"/>
+    </bean>
+
+    <bean id="modelImpl" class="pro.thaipad.sokoban_spring.model.ModelImpl">
+        <property name="eventListener" ref="controller"/>
+    </bean>
+
+</beans>
